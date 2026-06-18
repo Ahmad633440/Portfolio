@@ -1,74 +1,119 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#project" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
-<>
-{/* Top Navbar */}
-<nav className="fixed top-0 left-0 z-50 w-full h-16   flex items-center justify-between px-4 md:px-12 backdrop-blur
-border-b border-emerald-400/40 shadow-[0_10px_24px_-14px_rgba(52,211,153,0.8)] transition-colors
-bg-slate-100/80 text-neutral-900 dark:bg-neutral-900/80 dark:text-white
-"
-      >
-        {/* Logo */}
-        <a href="#home">
-          <h1 className="text-2xl font-bold tracking-wide">AN</h1>
-        </a>
+    <>
+      <nav className="fixed top-0 left-0 z-50 w-full border-b border-slate-800 bg-slate-950/90 backdrop-blur-xl transition-all duration-300">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <a
+            href="#home"
+            className="flex items-center gap-3 font-semibold tracking-wide text-white"
+          >
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 text-lg">
-          <a href="#home" className="hover:text-emerald-400">Home</a>
-          <a href="#about" className="hover:text-emerald-400">About</a>
-          <a href="#skills" className="hover:text-emerald-400">Skills</a>
-          <a href="#project" className="hover:text-emerald-400">Projects</a>
-          <a href="#contact" className="hover:text-emerald-400">Contact</a>
-        </div>
+            <span className="hidden sm:inline text-lg">Ahmad Nazir</span>
+          </a>
 
-        {/* Mobile Menu Icon */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="md:hidden p-2 rounded-lg hover:bg-black/10 dark:hover:bg-white/10 transition"
-        >
-          <Menu />
-        </button>
-      </nav>
-
-      {/* Overlay */}
-      {menuOpen && (
-        <div
-          onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 bg-black/60 z-40"
-        />
-      )}
-
-      {/* Mobile Side Menu */}
-      <div
-        className={`
-          fixed top-0 left-0 z-50 h-full w-64
-          flex flex-col justify-between
-          px-6 py-6
-          transition-transform duration-300
-          ${menuOpen ? "translate-x-0" : "-translate-x-full"}
-          bg-slate-100 text-neutral-900
-          dark:bg-neutral-950 dark:text-white
-        `}
-      >
-        <div>
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-xl font-bold">Menu</h2>
-            <button onClick={() => setMenuOpen(false)}>
-              <X />
-            </button>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="relative transition-all duration-300 hover:text-violet-300 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-violet-400 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
 
-          <div className="flex flex-col gap-6 text-lg">
-            <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
-            <a href="#project" onClick={() => setMenuOpen(false)}>Projects</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              className="hidden md:inline-flex items-center gap-2 rounded-2xl border border-violet-500/20 bg-violet-500/10 px-5 py-2 text-sm text-violet-200 transition-all duration-300 hover:scale-105 hover:border-violet-400/40 hover:bg-violet-500/20"
+            >
+              Contact
+              <ArrowRight size={16} />
+            </a>
+
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/50 text-white transition-all duration-300 hover:border-violet-500/40 hover:bg-slate-900 md:hidden"
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-all duration-300 ${
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      <div
+        className={`fixed top-0 left-0 z-50 h-full w-full max-w-xs border-r border-slate-800 bg-slate-950/95 backdrop-blur-xl transition-all duration-500 ease-out ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex h-full flex-col justify-between p-6">
+          <div>
+            <div className="mb-10 flex items-center justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-violet-300/80">
+                  Menu
+                </p>
+                <h2 className="text-2xl font-semibold text-white">
+                  Navigation
+                </h2>
+              </div>
+
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                className="rounded-xl p-2 transition-all duration-300 hover:bg-slate-900 hover:text-violet-300"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-3 text-lg font-medium">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl px-4 py-3 text-slate-200 transition-all duration-300 hover:bg-slate-900 hover:text-violet-300"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-5 backdrop-blur-xl">
+            <p className="font-medium text-violet-300">
+              Portfolio ready for next step
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-slate-400">
+              Responsive layout, polished motion, and consistent design across
+              every section.
+            </p>
           </div>
         </div>
       </div>
@@ -77,3 +122,4 @@ bg-slate-100/80 text-neutral-900 dark:bg-neutral-900/80 dark:text-white
 };
 
 export default Navbar;
+
