@@ -17,7 +17,7 @@ const projects = [
     title: 'CryptoInsight',
     subtitle: 'Semantic Market Context & News Analytics',
     description: 'Analyzes real-time crypto news and matches it with similar past events using semantic search (embeddings). Instead of predicting the future, it provides historical context and actual price reactions to help users make informed decisions.',
-    liveUrl: 'https://cryptoinsight-red.vercel.app/',
+    liveUrl: 'https://cryptoinsight-zeta.vercel.app/',
     codeUrl: 'https://github.com/Ahmad633440/cryptoinsight',
     image: 'cryptoinsight.png', // Replace with your actual image path or import
     tags: ['NextJS', 'MongoDB Atlas', 'TypeScript', 'Gemini API', 'CoinGecko API', 'NewsData API'],
