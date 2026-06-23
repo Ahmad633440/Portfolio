@@ -7,7 +7,7 @@ const projects = [
     title: 'Thumblify',
     subtitle: 'AI-Powered Thumbnail Generation Platform',
     description: 'A full-stack web application that recreates and generates high-quality thumbnails using AI. Users can upload an image or provide a URL, customize styles, and generate improved thumbnails instantly.',
-    liveUrl: 'https://thumblify-silk-two.vercel.app/',
+    liveUrl: 'https://thumblify-rho-smoky.vercel.app/',
     codeUrl: 'https://github.com/Ahmad633440/Thumblify',
     image: 'thumblify.png', // Replace with your actual image path or import
     tags: ['NextJS', 'Tailwind', 'MongoDB', 'Hugging Face API', 'TypeScript'],
